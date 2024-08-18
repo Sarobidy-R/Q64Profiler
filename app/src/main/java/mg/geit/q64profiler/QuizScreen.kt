@@ -51,12 +51,13 @@ fun QuizScreen(navController: NavController) {
 
     Column(
         modifier = Modifier
-            .background(color = Color.White.copy(alpha = 0.1f))
+            .background(color = Color.White.copy(alpha = 0.08f))
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
-    ) {if (results == null) {
+    ) {
+        if (results == null) {
         if (questionIndex < totalQuestions) {
             val (profile, questionText) = allQuestions[questionIndex]
 
@@ -65,7 +66,7 @@ fun QuizScreen(navController: NavController) {
             Text(
                 text = questionText,
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.primary,
+                color = MaterialTheme.colorScheme.scrim,
                 modifier = Modifier.padding(8.dp)
             )
 
@@ -100,7 +101,7 @@ fun QuizScreen(navController: NavController) {
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = option,
-                            style = MaterialTheme.typography.titleSmall,
+                            style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -114,7 +115,7 @@ fun QuizScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Button(
-                    onClick = { questionIndex = (questionIndex - 1).coerceAtLeast(0) }, // Use coerceAtLeast for conciseness
+                    onClick = { questionIndex = (questionIndex - 1).coerceAtLeast(0) },
                     enabled = questionIndex > 0,
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.secondary
@@ -143,7 +144,7 @@ fun QuizScreen(navController: NavController) {
     } else {
         val resultsJson = Gson().toJson(results)
         navController.navigate("result/$resultsJson")
-    }
+        }
     }
 }
 @Preview
