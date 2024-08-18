@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,6 +30,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -96,6 +98,7 @@ fun UserFormScreen(navController: NavController){
                     cursorColor = Color.White,
                     containerColor = Color.White.copy(alpha = 0.1f)
                 ),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 shape = RoundedCornerShape(20.dp)
             )
 
@@ -110,12 +113,14 @@ fun UserFormScreen(navController: NavController){
                     .fillMaxWidth()
                     .padding(top = 2.dp, start = 30.dp, end = 30.dp)
                     .height(70.dp),
+
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.White.copy(alpha = 0.01f),
                     unfocusedBorderColor = Color.White.copy(alpha = 0.01f),
                     cursorColor = Color.White,
                     containerColor = Color.White.copy(alpha = 0.1f)
                 ),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                 shape = RoundedCornerShape(20.dp)
             )
 
