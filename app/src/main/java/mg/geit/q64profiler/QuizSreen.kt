@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.RadioButton
@@ -27,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.gson.Gson
 import mg.geit.q64profiler.utils.calculateResults
 import mg.geit.q64profiler.utils.combineAndSortQuestions
 import mg.geit.q64profiler.utils.getQuestionsFromJson
@@ -43,13 +43,7 @@ fun QuizScreen(navController: NavController) {
     var results by remember { mutableStateOf<Map<String, Int>?>(null) }
 
 
-    Image(
-        painter = painterResource(id = R.drawable.userinfobackground),
-        contentDescription = null,
-        modifier = Modifier
-            .fillMaxSize(),
-        contentScale = ContentScale.Crop
-    )
+    BackGroundImage()
 
 
     Column(
@@ -109,7 +103,8 @@ fun QuizScreen(navController: NavController) {
                 }
             }
         } else {
-            navController.navigate("result")
+            val resultsJson = Gson().toJson(results)
+            navController.navigate("result/$resultsJson")
         }
     }
 

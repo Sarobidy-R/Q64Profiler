@@ -40,13 +40,7 @@ fun UserFormScreen(navController: NavController){
     Box(
         modifier = Modifier.fillMaxSize()
     ){
-        Image(
-            painter = painterResource(id = R.drawable.userinfobackground),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
+        BackGroundImage()
         Column (
             modifier = Modifier
                 .fillMaxSize()
