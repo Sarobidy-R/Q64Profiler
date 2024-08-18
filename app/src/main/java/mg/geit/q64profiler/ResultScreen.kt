@@ -99,15 +99,7 @@ fun ResultScreen(navController: NavController, results: Map<String, Int>?) {
         }
     }
 }
-@Composable
-fun PodiumStep(modifier: Modifier = Modifier, height: Dp, color: Color) {
-    Box(
-        modifier = modifier
-            .height(height)
-            .fillMaxWidth()
-            .background(color)
-    )
-}
+
 @Composable
 fun ProfileItem(profile: String, score: Int, onClick: () -> Unit) {
     Column(
