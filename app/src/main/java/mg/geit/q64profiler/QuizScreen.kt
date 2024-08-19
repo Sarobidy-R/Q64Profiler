@@ -1,5 +1,6 @@
 package mg.geit.q64profiler
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,7 +38,13 @@ import mg.geit.q64profiler.utils.getQuestionsFromJson
 
 
 @Composable
-fun QuizScreen(navController: NavController) {
+fun QuizScreen(
+    navController: NavController,
+    username: String?,
+    email: String?,
+    phoneNumber: String?
+) {
+    Log.d("QuizScreen", "Username: ${username}, Email: ${email}, Phone Number: $phoneNumber")
     val context = LocalContext.current
     val questionsByProfile = getQuestionsFromJson(context, "Profils.json")
     val allQuestions = combineAndSortQuestions(questionsByProfile)
@@ -73,11 +80,11 @@ fun QuizScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(30.dp))
 
             val options = listOf(
-                "Totalement en accord \uD83D\uDE07",
-                "En accord ☺\uFE0F",
-                "Neutre \uD83D\uDE36 ",
+                "Totalement en désaccord \uD83D\uDE12",
                 "En désaccord \uD83D\uDE11",
-                "Totalement en désaccord \uD83D\uDE12"
+                "Neutre \uD83D\uDE36 ",
+                "En accord ☺\uFE0F",
+                "Totalement en accord \uD83D\uDE07"
             )
 
             var selectedOption by remember { mutableStateOf(3) } // Default to "Neutre"
@@ -142,13 +149,19 @@ fun QuizScreen(navController: NavController) {
             }
         }
     } else {
+
         val resultsJson = Gson().toJson(results)
-        navController.navigate("result/$resultsJson")
+        navController.navigate("result/$resultsJson&username=$username")
         }
     }
 }
 @Preview
 @Composable
 fun QuizScreenPreview() {
-    QuizScreen(navController = NavController(LocalContext.current))
+    QuizScreen(
+        navController = NavController(LocalContext.current),
+        username = "username",
+        email = "email",
+        phoneNumber = "phoneNumber"
+    )
 }
